@@ -15,8 +15,9 @@ win = pygame.display.set_mode((500, 500))
 
 pygame.display.set_caption('First Game')
 
+screenwidth = 500
 x = 50
-y = 50
+y = 425
 width = 40
 height = 60
 velocity = 5
@@ -32,18 +33,20 @@ while run:
 
 	keys = pygame.key.get_pressed()
 
-	if keys[pygame.K_LEFT]:
+	if keys[pygame.K_LEFT] and x > velocity:
 		x -= velocity
 
-	if keys[pygame.K_RIGHT]:
+	if keys[pygame.K_RIGHT] and x < screenwidth - width - velocity:
 		x += velocity
 
-	if keys[pygame.K_UP]:
+	if keys[pygame.K_UP] and y > velocity :
 		y -= velocity
 
-	if keys[pygame.K_DOWN]:
+	if keys[pygame.K_DOWN] and y < screenwidth - height - velocity:
 		y += velocity
+	
 	win.fill((0))
 	pygame.draw.rect(win, (255, 0, 0), (x, y, width, height))
 	pygame.display.update()
+
 pygame.quit()
