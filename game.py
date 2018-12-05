@@ -13,6 +13,9 @@ pygame.init()
 
 WIDTH = 800
 HEIGHT = 600
+RED_RGB = (255,0,0)
+player_pos = [400, 300]
+player_size = 50
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
@@ -20,5 +23,13 @@ game_over = False
 
 while not game_over:
 	for event in pygame.event.get():
-		if event.type == pygame.QUIT:
+		if event.type == pygame.QUIT:  #event types are listed in pygame library https://www.pygame.org/docs/ref/event.html
 			sys.exit()
+		if event.type == pygame.KEYDOWN:
+			if event.key == K_LEFT:
+				pass
+			elif event.key == K_RIGHT:
+				pass
+	pygame.draw.rect(screen, RED_RGB,  (player_pos[0], player_pos[1], player_size, player_size) )
+
+	pygame.display.update()# a commmand that updates the screen with every iteration THIS IS NECESSARY
