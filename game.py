@@ -11,25 +11,39 @@ https://www.pygame.org/docs/tut/ImportInit.html
 '''
 pygame.init()
 
-WIDTH = 800
-HEIGHT = 600
-RED_RGB = (255,0,0)
-player_pos = [400, 300]
-player_size = 50
+win = pygame.display.set_mode((500, 500))
 
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption('First Game')
 
-game_over = False
+x = 50
+y = 50
+width = 40
+height = 60
+velocity = 5
 
-while not game_over:
-	for event in pygame.event.get():
-		if event.type == pygame.QUIT:  #event types are listed in pygame library https://www.pygame.org/docs/ref/event.html
-			sys.exit()
-		if event.type == pygame.KEYDOWN:
-			if event.key == K_LEFT:
-				pass
-			elif event.key == K_RIGHT:
-				pass
-	pygame.draw.rect(screen, RED_RGB,  (player_pos[0], player_pos[1], player_size, player_size) )
+run = True
+while run:
+	
+	pygame.time.delay(100)
 
-	pygame.display.update()# a commmand that updates the screen with every iteration THIS IS NECESSARY
+	for event in pygame.event.get(): # loops through all event to check if they happened
+		if event.type == pygame.QUIT:
+			run = False
+
+	keys = pygame.key.get_pressed()
+
+	if keys[pygame.K_LEFT]:
+		x -= velocity
+
+	if keys[pygame.K_RIGHT]:
+		x += velocity
+
+	if keys[pygame.K_UP]:
+		y -= velocity
+
+	if keys[pygame.K_DOWN]:
+		y += velocity
+	win.fill((0))
+	pygame.draw.rect(win, (255, 0, 0), (x, y, width, height))
+	pygame.display.update()
+pygame.quit()
