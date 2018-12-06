@@ -36,7 +36,7 @@ while run:   #main game loop
 		x -= velocity
 	if keys[pygame.K_RIGHT] and x < SURF_WIDTH - CHAR_WIDTH:
 		x += velocity
-	if not (isJump):
+	if not (isJump):  # IE if isJump = True
 		if keys[pygame.K_UP] and y > 0:
 			y -= velocity
 		if keys[pygame.K_DOWN] and y < SURF_HEIGHT - CHAR_HEIGHT:
