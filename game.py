@@ -1,6 +1,6 @@
 import pygame
 import sys
-pygame.init() # necessary. Docs say you can call individual and initizial individual modules as well. Like font.
+pygame.init() # necessary. Docs say you can call individual and initizia individual modules as well. Like font.
 
 
 x = 50
@@ -36,14 +36,14 @@ while run:   #main game loop
 		x -= velocity
 	if keys[pygame.K_RIGHT] and x < SURF_WIDTH - CHAR_WIDTH:
 		x += velocity
-	if not (isJump):  # IE if isJump = True
+	if not (isJump):  # WHILE NOT JUMPING, DO THIS
 		if keys[pygame.K_UP] and y > 0:
 			y -= velocity
 		if keys[pygame.K_DOWN] and y < SURF_HEIGHT - CHAR_HEIGHT:
 			y += velocity
 		if keys[pygame.K_SPACE]:
 			isJump = True
-	else:
+	else:  # While jumping, do this
 		if jumpCount >= -10:
 			neg = 1
 			if jumpCount < 0:
@@ -54,9 +54,8 @@ while run:   #main game loop
 			isJump = False
 			jumpCount = 10
 	
-	window.fill(BLACK_RGB) # prevnets rectangle from being massive blob
-
-	pygame.draw.rect(window, RED_RGB, (x, y, CHAR_WIDTH, CHAR_HEIGHT) )
+	window.fill(BLACK_RGB) # prevents rectangle from being massive blob
+	pygame.draw.rect(window, RED_RGB, (x, y, CHAR_WIDTH, CHAR_HEIGHT) ) #creates my rectangle
 	pygame.display.update() # refreshed the game
 
 pygame.quit()
