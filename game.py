@@ -12,14 +12,14 @@ walkLeft = [pygame.image.load('L1.png'), pygame.image.load('L2.png'), pygame.ima
 bg = pygame.image.load('bg.jpg')
 char = pygame.image.load('standing.png') 
 
-
+clock = pygame.time.Clock()
 
 x = 50
 y = 400
 velocity = 5 # velocity will be subtracted/added/multiplied/divided from character to make it move places on screen
 
 SURF_WIDTH = 500     # easier to change later if in variables
-SURF_HEIGHT = 500	# easier to change later if in variables
+SURF_HEIGHT = 480	# easier to change later if in variables
 
 CHAR_WIDTH = 64
 CHAR_HEIGHT = 64
@@ -40,7 +40,16 @@ def redrawGameWindow():
 	global walkCount
 
 	window.blit(bg, (0,0))
-	pygame.draw.rect(window, RED_RGB, (x, y, CHAR_WIDTH, CHAR_HEIGHT) ) #creates my rectangle
+	if walkCount + 1 >= 27:
+		walkCount = 0
+	if left:
+		window.blit(walkLeft[walkCount//3], (x, y))
+		walkCount += 1
+	elif right:
+		window.blit(walkRight[walkCount//3], (x, y))
+		walkCount += 1
+	else:
+		window.blit(char, (x, y))
 	pygame.display.update() # refreshed the game
 
 
@@ -48,8 +57,8 @@ def redrawGameWindow():
 
 run = True
 while run:   #main game loop
-	pygame.time.delay(100) # delay in miliseconds
-
+	clock.tick(27)
+ 
 	for event in pygame.event.get(): #loops through every event to see if the have or haven't happened
 		if event.type == pygame.QUIT: #if you click the x, run is assigned False
 			run = False # breaks the loop and goes to pygame.quit()
@@ -58,12 +67,24 @@ while run:   #main game loop
 
 	if keys[pygame.K_LEFT] and x > 0:
 		x -= velocity
-	if keys[pygame.K_RIGHT] and x < SURF_WIDTH - CHAR_WIDTH:
+		left = True
+		right = False
+	elif keys[pygame.K_RIGHT] and x < SURF_WIDTH - CHAR_WIDTH:
 		x += velocity
+		left = False
+		right = True
+	else:
+		right = False
+		left = False
+		walkCount = 0
+	
 	if not (isJump):  # WHILE NOT JUMPING, DO THIS
 
 		if keys[pygame.K_SPACE]:
 			isJump = True
+			right = False
+			left = False
+			walkCount = 0
 	else:  # While jumping, do this
 		if jumpCount >= -10:
 			neg = 1
