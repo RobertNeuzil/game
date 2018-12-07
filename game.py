@@ -1,6 +1,8 @@
 import pygame
 pygame.init()
 
+
+CarHeight = 82
 CarWidth = 73
 width = 800 
 height = 600
@@ -24,6 +26,7 @@ def game_loop():
 	x = (width * 0.45)
 	y = (height * 0.8)
 	x_change = 0
+	y_change = 0
 	GameExit = False
 	while not GameExit:
 
@@ -35,19 +38,28 @@ def game_loop():
 					x_change = -5
 				if event.key == pygame.K_RIGHT:
 					x_change = 5
+
+				if event.key == pygame.K_UP:
+					y_change = -3
+				if event.key == pygame.K_DOWN:
+					y_change = 3	
 			if event.type == pygame.KEYUP:
 				if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
 					x_change = 0
+				
+				if event.key == pygame.K_UP or event.key == pygame.K_DOWN:
+					y_change = 0	
 
 		x += x_change
-
+		y += y_change
 			
 		GameDisplay.fill(white)
 		car(x, y)
 
 		if x > width - CarWidth  or x < 0:
 			GameExit = True
-
+		if y > height - CarHeight or y < 0:
+			GameExit = True
 		pygame.display.update()
 
 		clock.tick(70)
