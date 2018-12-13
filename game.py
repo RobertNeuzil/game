@@ -1,16 +1,18 @@
 import pygame
-
 pygame.init()
-win = pygame.display.set_mode((500, 500))
-pygame.display.set_caption("Game")
-
 x = 50
 y = 50
+screen_width = 500
+screen_height = 500
 width = 40
 height = 60
 vel = 5
 
 run = True
+
+
+win = pygame.display.set_mode((screen_width, screen_height))
+pygame.display.set_caption("Game")
 
 while run:
 	pygame.time.delay(100)
@@ -21,13 +23,14 @@ while run:
 	
 	keys = pygame.key.get_pressed()
 
-	if keys[pygame.K_LEFT]:
+	if keys[pygame.K_LEFT] and x > vel:
 		x -= vel
-	if keys[pygame.K_RIGHT]:
+	if keys[pygame.K_RIGHT] and x < screen_width - width:
+		
 		x += vel
-	if keys[pygame.K_UP]:
+	if keys[pygame.K_UP] and y > vel:
 		y -= vel
-	if keys[pygame.K_DOWN]:
+	if keys[pygame.K_DOWN]and y < screen_height - height:
 		y += vel
 
 	win.fill((0,0,0))
