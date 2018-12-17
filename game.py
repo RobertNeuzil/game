@@ -29,15 +29,15 @@ while run: # main game logic loop
 	if keys[pygame.K_RIGHT] and x < screen_width - width - vel: # you have to subtract the width so the character stops at the first left pixel and remember it is also moving by vel every key press
 		x += vel
 
-	if not (isjump):
+	if not (isjump):  # if not False. Character can't move up or down while jumping
 		if keys[pygame.K_UP] and y > vel:
 			y -= vel
 		if keys[pygame.K_DOWN]and y < screen_height - height - vel:
 			y += vel
-		if keys[pygame.K_SPACE]:
+		if keys[pygame.K_SPACE]:   # character can't jump while jumping
 			isjump = True
 	else:
-		if jumpcount >= -10:
+		if jumpcount >= -10: 
 			neg = 1
 			if jumpcount < 0:
 				neg = -1
