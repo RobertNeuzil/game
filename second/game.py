@@ -1,43 +1,44 @@
 import pygame
-def main():
-
-	screenwidth = 600
-	screenheight = 500
-	rectwidth = 40
-	rectheight = 60
-	run = True
-	positionx = 90
-	positiony = 400
-	screencolor = (0, 0, 0)
-	rectcolor = (255, 0, 0)
-	vel = 10
 
 
+class game(object):
+	def __init__(self):
+		self.screenwidth = 600
+		self.screenheight = 500
+		self.rectwidth = 40
+		self.rectheight = 60
+		self.run = True
+		self.positionx = 90
+		self.positiony = 400
+		self.screencolor = (0, 0, 0)
+		self.rectcolor = (255, 0, 0)
+		self.vel = 10
 
-	pygame.init()
+man = game()
+pygame.init()
+pygame.display.set_caption("minimal program")
+screen = pygame.display.set_mode((man.screenwidth, man.screenheight))
 	
-	pygame.display.set_caption("minimal program")
-	screen = pygame.display.set_mode((screenwidth, screenheight))
-	
 
-	while run:
-		pygame.time.delay(80)
-		for event in pygame.event.get():
-			if event.type == pygame.QUIT:
-				run = False
+while man.run:
+	pygame.time.delay(80)
+	for event in pygame.event.get():
+		if event.type == pygame.QUIT:
+			man.run = False
 
-		pressed = pygame.key.get_pressed()
-		if pressed[pygame.K_RIGHT] and positionx < (screenwidth-rectwidth):
-			positionx += vel
-		if pressed[pygame.K_LEFT] and positionx > 0:
-			positionx -= vel
+	pressed = pygame.key.get_pressed()
+	if pressed[pygame.K_RIGHT] and man.positionx < (man.screenwidth-man.rectwidth):
+		man.positionx += man.vel
+	if pressed[pygame.K_LEFT] and man.positionx > 0:
+		man.positionx -= man.vel
 
-		screen.fill(screencolor)
+	screen.fill(man.screencolor)
 		
-		pygame.draw.rect(screen, rectcolor, (positionx, positiony, rectwidth, rectheight))
-		pygame.display.update()
-	pygame.quit()
+	pygame.draw.rect(screen, man.rectcolor, (man.positionx, man.positiony, man.rectwidth, man.rectheight))
+	pygame.display.update()
 
-main()
+pygame.quit()
+
+
 
 
