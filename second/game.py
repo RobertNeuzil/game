@@ -1,33 +1,43 @@
 import pygame
-pygame.init()
+def main():
+
+	screenwidth = 600
+	screenheight = 500
+	rectwidth = 40
+	rectheight = 60
+	run = True
+	positionx = 90
+	positiony = 400
+	screencolor = (0, 0, 0)
+	rectcolor = (255, 0, 0)
+	vel = 10
 
 
-class Player():
-	def __init__(self, width, height, position_x, position_y, char_width, char_height):
-		self.width = width
-		self.height = height
-		self.position_x = position_x
-		self.position_y = position_y
-		self.screen = pygame.display.set_mode((man.width, man.height))
-		self.run = True
-		self.black = (0, 0, 0)
-		self.red = (255, 0, 0)
-		self.char_width = char_width
-		self.char_height= char_height
 
-
-man = Player(500, 500, 50, 450, 30, 30)
-man.screen.fill(man.black)
-key_press = pygame.event.get()
-
-while man.run:
-	pygame.display.update()
+	pygame.init()
 	
-	for key_press in pygame.event.get():
-		if key_press.type == pygame.QUIT:
-			man.run = False
+	pygame.display.set_caption("minimal program")
+	screen = pygame.display.set_mode((screenwidth, screenheight))
 	
 
+	while run:
+		pygame.time.delay(80)
+		for event in pygame.event.get():
+			if event.type == pygame.QUIT:
+				run = False
 
-	pygame.draw.rect((man.screen, man.red, (man.x, man.y, man.char_width, man.char_height))
-pygame.quit()
+		pressed = pygame.key.get_pressed()
+		if pressed[pygame.K_RIGHT] and positionx < (screenwidth-rectwidth):
+			positionx += vel
+		if pressed[pygame.K_LEFT] and positionx > 0:
+			positionx -= vel
+
+		screen.fill(screencolor)
+		
+		pygame.draw.rect(screen, rectcolor, (positionx, positiony, rectwidth, rectheight))
+		pygame.display.update()
+	pygame.quit()
+
+main()
+
+
