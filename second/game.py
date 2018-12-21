@@ -11,6 +11,9 @@ POSITIONY = 375
 RED = (255, 0, 0)
 BLACK = (0, 0, 0)
 vel = 5
+Jumping = False
+JumpCount = 10
+
 
 # create and draw
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -29,13 +32,23 @@ while RUNNING:
         POSITIONX -= vel
     if keys[pygame.K_RIGHT] and POSITIONX < (WIDTH - CHARWIDTH):
         POSITIONX += vel
-    if keys[pygame.K_DOWN] and POSITIONY < (HEIGHT - CHARHEIGHT):
-        POSITIONY += vel
-    if keys[pygame.K_UP] and POSITIONY > 0:
-        POSITIONY -= vel
-    if keys[pygame.K_SPACE]:
-        pass
 
+    if not(Jumping):
+        if keys[pygame.K_DOWN] and POSITIONY < (HEIGHT - CHARHEIGHT):
+            POSITIONY += vel
+        if keys[pygame.K_UP] and POSITIONY > 0:
+            POSITIONY -= vel
+        if keys[pygame.K_SPACE]:
+            Jumping = True
+
+    else:
+        if JumpCount >= -10:
+            POSITIONY -= (JumpCount ** 2) * 0.5
+            JumpCount -= 1
+
+        else:
+            Jumping = False
+            JumpCount = 10
     screen.fill(BLACK)
     pygame.draw.rect(screen, RED, (POSITIONX, POSITIONY,
                                     CHARHEIGHT, CHARWIDTH) )
