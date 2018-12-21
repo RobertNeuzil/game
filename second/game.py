@@ -33,7 +33,7 @@ while RUNNING:
     if keys[pygame.K_RIGHT] and POSITIONX < (WIDTH - CHARWIDTH):
         POSITIONX += vel
 
-    if not(Jumping):
+    if Jumping == False:
         if keys[pygame.K_DOWN] and POSITIONY < (HEIGHT - CHARHEIGHT):
             POSITIONY += vel
         if keys[pygame.K_UP] and POSITIONY > 0:
@@ -43,7 +43,10 @@ while RUNNING:
 
     else:
         if JumpCount >= -10:
-            POSITIONY -= (JumpCount ** 2) * 0.5
+            neg = 1
+            if JumpCount < 0:
+                neg = -1
+            POSITIONY -= (JumpCount ** 2) * 0.4 * neg
             JumpCount -= 1
 
         else:
