@@ -1,4 +1,5 @@
 import pygame
+
 pygame.init()
 window = pygame.display.set_mode((600,600))
 pygame.display.set_caption("First Game")
@@ -27,6 +28,7 @@ square_three = rects(100, 300, 150, 20)
 square_four = rects(100, 100, 340, 20)
 square_five = rects(100, 400, 200, 20)
 square_six = rects(60, 300, 150, 20)
+
 def draw():
 	pygame.time.delay(40)
 	window.fill(black)
@@ -52,7 +54,8 @@ while running:
 		square_one.y += velocity
 	if keys[pygame.K_UP] and square_one.y > 0:
 		square_one.y -= velocity
-	
+	if keys[pygame.K_SPACE]:
+		square_one.y *= 0.9444
 	draw()
 	
 pygame.quit()
