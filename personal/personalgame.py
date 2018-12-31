@@ -45,12 +45,15 @@ while square_one.running:
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
 			square_one.running = False
+	
 	keys = pygame.key.get_pressed()
+	
 	if keys[pygame.K_LEFT] and square_one.x > 0:
 		square_one.x-= square_one.velocity
 	if keys[pygame.K_RIGHT] and square_one.x < 600 - square_one.width:
 		square_one.x += square_one.velocity
-	if not (square_one.jumping):
+	
+	if not(square_one.jumping):
 		
 		if keys[pygame.K_DOWN] and square_one.y < 600 - square_one.height:
 			square_one.y += square_one.velocity
@@ -58,11 +61,13 @@ while square_one.running:
 			square_one.y -= square_one.velocity
 		if keys[pygame.K_SPACE]:
 			square_one.jumping = True
+	
 	else:
+
 		
 		if square_one.jumpcount >= -10:
 			neg = 1
-			if square_one.jumpcount < 0:
+			if square_one.jumpcount <= 0:
 				neg = -1
 			square_one.y -= (square_one.jumpcount ** 2) * 0.5 * neg
 			square_one.jumpcount -= 1
