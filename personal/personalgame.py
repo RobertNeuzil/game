@@ -62,8 +62,12 @@ while running:
 			jumping = True
 	else:
 		if square_one.jumpcount >= -10:
-			square_one.y -= square_one.jumpcount ** 2
-			square_one.jumpcount -= 1
+			neg = 1
+			if square_one.jumpcount < 0:
+				neg = -1
+			square_one.y -= (square_one.jumpcount ** 2) * 0.5 * neg
+			square_one.jumpcount - 1
+		
 		else:
 			square_one.jumping = True
 			square_one.jumpcount = 10
