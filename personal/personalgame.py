@@ -11,7 +11,7 @@ width = 40
 height = 40
 red = (255, 0, 0)
 black = (0, 0, 0)
-
+jumping = False
 
 class rects():
 	def __init__(self, x, y, width, height):
@@ -19,8 +19,10 @@ class rects():
 		self.y = y
 		self.width = width
 		self.height = height
+		self.jumpcount = 10
 	def create(self):
 		pygame.draw.rect(window, red, (self.x, self.y, self.width, self.height))
+
 
 square_one = rects(50, 530, 40, 40)
 square_two = rects(100, 200, 200, 20)
@@ -30,6 +32,7 @@ square_five = rects(100, 400, 200, 20)
 square_six = rects(60, 300, 150, 20)
 
 def draw():
+	
 	pygame.time.delay(40)
 	window.fill(black)
 	square_one.create()
@@ -50,12 +53,20 @@ while running:
 		square_one.x-= velocity
 	if keys[pygame.K_RIGHT] and square_one.x < 600 - width:
 		square_one.x += velocity
-	if keys[pygame.K_DOWN] and square_one.y < 600 - height:
-		square_one.y += velocity
-	if keys[pygame.K_UP] and square_one.y > 0:
-		square_one.y -= velocity
-	if keys[pygame.K_SPACE]:
-		square_one.y *= 0.9444
+	if not (jumping):
+		if keys[pygame.K_DOWN] and square_one.y < 600 - height:
+			square_one.y += velocity
+		if keys[pygame.K_UP] and square_one.y > 0:
+			square_one.y -= velocity
+		if keys[pygame.K_SPACE]:
+			jumping = True
+	else:
+		if square_one.jumpcount >= -10:
+			square_one.y -= square_one.jumpcount ** 2
+			square_one.jumpcount -= 1
+		else:
+			square_one.jumping = True
+			square_one.jumpcount = 10
 	draw()
 	
 pygame.quit()
