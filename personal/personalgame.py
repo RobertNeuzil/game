@@ -24,9 +24,9 @@ class rects():
 		pygame.draw.rect(window, gray60, (self.x, self.y, self.width, self.height))
 
 
-square_one = rects(50, 540, 40, 40)
-square_two = rects(210, 400, 150, 20)
-square_three  = rects(0, 580, 600, 20)
+character = rects(50, 540, 40, 40)
+square_one = rects(210, 400, 150, 20)
+ground  = rects(0, 580, 600, 20)
 
 
 
@@ -34,47 +34,47 @@ def draw():
 	
 	pygame.time.delay(40)
 	window.fill(black)
+	character.create()
 	square_one.create()
-	square_two.create()
-	square_three.create_ground()
+	ground.create_ground()
 	pygame.display.update()
 	
 	
 
-while square_one.running:
+while character.running:
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
-			square_one.running = False
+			character.running = False
 	
 	keys = pygame.key.get_pressed()
 	
-	if keys[pygame.K_LEFT] and square_one.x > 0:
-		square_one.x-= square_one.velocity
-	if keys[pygame.K_RIGHT] and square_one.x < 600 - square_one.width:
-		square_one.x += square_one.velocity
+	if keys[pygame.K_LEFT] and character.x > 0:
+		character.x-= character.velocity
+	if keys[pygame.K_RIGHT] and character.x < 600 - character.width:
+		character.x += character.velocity
 	
-	if not(square_one.jumping):
+	if not(character.jumping):
 		
-		if keys[pygame.K_DOWN] and square_one.y < 600 - square_one.height:
-			square_one.y += square_one.velocity
-		if keys[pygame.K_UP] and square_one.y > 0:
-			square_one.y -= square_one.velocity
+		if keys[pygame.K_DOWN] and character.y < 600 - character.height:
+			character.y += character.velocity
+		if keys[pygame.K_UP] and character.y > 0:
+			character.y -= character.velocity
 		if keys[pygame.K_SPACE]:
-			square_one.jumping = True
+			character.jumping = True
 	
 	else:
 
 		
-		if square_one.jumpcount >= -10:
+		if character.jumpcount >= -10:
 			neg = 1
-			if square_one.jumpcount <= 0:
+			if character.jumpcount <= 0:
 				neg = -1
-			square_one.y -= (square_one.jumpcount ** 2) * 0.5 * neg
-			square_one.jumpcount -= 1
+			character.y -= (character.jumpcount ** 2) * 0.5 * neg
+			character.jumpcount -= 1
 		
 		else:
-			square_one.jumping = True
-			square_one.jumpcount = 10
+			character.jumping = True
+			character.jumpcount = 10
 	draw()
 	
 pygame.quit()
