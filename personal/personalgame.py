@@ -11,6 +11,7 @@ width = 40
 height = 40
 red = (255, 0, 0)
 black = (0, 0, 0)
+gray60 = (153, 153, 153)
 jumping = False
 
 class rects():
@@ -22,14 +23,15 @@ class rects():
 		self.jumpcount = 10
 	def create(self):
 		pygame.draw.rect(window, red, (self.x, self.y, self.width, self.height))
+	def create_ground(self):
+		pygame.draw.rect(window, gray60, (self.x, self.y, self.width, self.height))
 
 
-square_one = rects(50, 530, 40, 40)
-square_two = rects(100, 200, 200, 20)
-square_three = rects(100, 300, 150, 20)
-square_four = rects(100, 100, 340, 20)
-square_five = rects(100, 400, 200, 20)
-square_six = rects(60, 300, 150, 20)
+square_one = rects(50, 580 - height, 40, 40)
+square_two = rects(210, 400, 150, 20)
+square_three  = rects(0, 580, 600, 20)
+
+
 
 def draw():
 	
@@ -37,9 +39,7 @@ def draw():
 	window.fill(black)
 	square_one.create()
 	square_two.create()
-	square_three.create()
-	square_four.create()
-	square_five.create()
+	square_three.create_ground()
 	pygame.display.update()
 	
 	
