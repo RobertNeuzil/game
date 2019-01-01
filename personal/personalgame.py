@@ -70,9 +70,9 @@ while character.running:
 		if keys[pygame.K_SPACE]:
 			character.jumping = True
 	
-	else:
+	
 
-		
+	else:	
 		if character.jumpcount >= -10:
 			neg = 1
 			if character.jumpcount <= 0:
@@ -81,8 +81,9 @@ while character.running:
 			character.jumpcount -= 1
 		
 		else:
-			character.jumping = True
+			character.jumping = False
 			character.jumpcount = 10
+
 	draw()
 	
 pygame.quit()
