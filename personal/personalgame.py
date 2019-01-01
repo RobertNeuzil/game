@@ -6,6 +6,7 @@ pygame.display.set_caption("First Game")
 red = (255, 0, 0)
 black = (0, 0, 0)
 gray60 = (153, 153, 153)
+blue = (50, 109, 255)
 
 
 class rects():
@@ -22,10 +23,14 @@ class rects():
 		pygame.draw.rect(window, red, (self.x, self.y, self.width, self.height))
 	def create_ground(self):
 		pygame.draw.rect(window, gray60, (self.x, self.y, self.width, self.height))
-
+	def create_prize(self):
+		pygame.draw.rect(window, blue, (self.x, self.y, self.width, self.height))
 
 character = rects(50, 540, 40, 40)
 square_one = rects(210, 400, 150, 20)
+square_two = rects(380, 260, 70, 20)
+square_three = rects(220, 150, 120, 20)
+prize = rects(250, 0, 80, 40)
 ground  = rects(0, 580, 600, 20)
 
 
@@ -36,6 +41,9 @@ def draw():
 	window.fill(black)
 	character.create()
 	square_one.create()
+	square_two.create()
+	square_three.create()
+	prize.create_prize()
 	ground.create_ground()
 	pygame.display.update()
 	
