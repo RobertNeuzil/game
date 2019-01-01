@@ -2,7 +2,7 @@ import pygame
 
 pygame.init()
 window = pygame.display.set_mode((600,600))
-pygame.display.set_caption("First Game")
+pygame.display.set_caption("Robert's Game")
 red = (255, 0, 0)
 black = (0, 0, 0)
 gray60 = (153, 153, 153)
@@ -63,7 +63,7 @@ while character.running:
 	
 	if not(character.jumping):
 		
-		if keys[pygame.K_DOWN] and character.y < 600 - character.height:
+		if keys[pygame.K_DOWN] and character.y < 600 - character.height - ground.height:
 			character.y += character.velocity
 		if keys[pygame.K_UP] and character.y > 0:
 			character.y -= character.velocity
