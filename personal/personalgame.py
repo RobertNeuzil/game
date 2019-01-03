@@ -19,8 +19,8 @@ class rects():
         self.jumping = False
         self.running = True
         self.velocity = 5
-        self.x2 = self.x + self.width
-        self.y2 = self.y + self.height
+        self.x2 = x + width
+        self.y2 = y + height
         
         
     def create(self):
@@ -39,9 +39,9 @@ class rects():
 
 
 character = rects(50, 540, 40, 40)
-square_one = rects(90, 440, 200, 20)
-square_two = rects(380, 290, 70, 20)
-square_three = rects(200, 150, 120, 20)
+square_one = rects(90, 440, 15, 30)
+square_two = rects(120, 290, 15, 30)
+square_three = rects(150, 150, 15, 30)
 prize = rects(250, 0, 80, 40)
 ground = rects(0, 580, 600, 20)
 
@@ -72,6 +72,7 @@ while character.running:
     if keys[pygame.K_RIGHT] and character.x < 600 - character.width:
         character.x += character.velocity
 
+    
     if not(character.jumping):
 
         if keys[pygame.K_DOWN] and character.y < 600 - character.height - ground.height:
@@ -92,11 +93,14 @@ while character.running:
         else:
             character.jumping = False
             character.jumpcount = 10
-    #colission detection
-    if character.x in range(square_one.x, square_one.x2) and character.y in range(square_one.y, square_one.y2):
-        collisioncount += 1
-        print (f"Colission{collisioncount}")
+
+    if character.x > square_one.x and character.x < square_one.x2: 
+        print ('one')
+    if character.x > square_two.x and character.x < square_two.x2:
+        print ('two')
+    if character.x > square_three.x and character.x < square_three.x2:
+        print ('three')
     
     draw()
-
+    
 pygame.quit()
