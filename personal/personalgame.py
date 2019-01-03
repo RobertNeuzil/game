@@ -22,6 +22,7 @@ class rects():
         self.x2 = self.x + self.width
         self.y2 = self.y + self.height
         
+        
     def create(self):
         pygame.draw.rect(
             window, red, (self.x, self.y, self.width, self.height))
@@ -92,11 +93,11 @@ while character.running:
             character.jumping = False
             character.jumpcount = 10
     #colission detection
-    if character.x < square_one.x + square_one.x:
+    if square_one.x < character.x and character.x < square_one.x + square_one.width and character.y < square_one.y + square_one.height and character.y > square_one.y:
         collisioncount += 1
         print (f"Colission{collisioncount}")
     
-    
+        
     draw()
 
 pygame.quit()
