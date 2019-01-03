@@ -93,11 +93,10 @@ while character.running:
             character.jumping = False
             character.jumpcount = 10
     #colission detection
-    if square_one.x < character.x and character.x < square_one.x + square_one.width and character.y < square_one.y + square_one.height and character.y > square_one.y:
+    if character.x in range(square_one.x, square_one.x2) and character.y in range(square_one.y, square_one.y2):
         collisioncount += 1
         print (f"Colission{collisioncount}")
     
-        
     draw()
 
 pygame.quit()
