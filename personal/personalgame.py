@@ -7,7 +7,7 @@ red = (255, 0, 0)
 black = (0, 0, 0)
 gray60 = (153, 153, 153)
 blue = (50, 109, 255)
-
+collisioncount = 0
 
 class rects():
     def __init__(self, x, y, width, height):
@@ -53,8 +53,9 @@ def draw():
     ground.create_ground()
     pygame.display.update()
 
-
+# Main Game Loop
 while character.running:
+    #Quit Game
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             character.running = False
@@ -74,7 +75,7 @@ while character.running:
             character.y -= character.velocity
         if keys[pygame.K_SPACE]:
             character.jumping = True
-
+    # Jump loop        
     else:
         if character.jumpcount >= -10:
             neg = 1
@@ -86,10 +87,13 @@ while character.running:
         else:
             character.jumping = False
             character.jumpcount = 10
-    
+    #colission detection
     if character.x > square_one.x and character.x < square_one.x + square_one.width and character.y > square_one.y - square_one.height and character.y < square_one.y + square_one.height:
-        print ("Collission") 
-        pass
+        print("Collission")
+   
+    if character.y + character.height > square_one.y and character.y < square_one.height + square_one.y:
+        collisioncount += 1
+        print (f"Colission{collisioncount}")
     draw()
 
 pygame.quit()
