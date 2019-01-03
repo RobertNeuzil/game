@@ -94,11 +94,11 @@ while character.running:
             character.jumping = False
             character.jumpcount = 10
 
-    if character.x > square_one.x and character.x < square_one.x2: 
+    if (character.x > square_one.x) and (character.x < square_one.x2) and (character.y > square_one.y) and (character.y < square_one.y2): 
         print ('one')
-    if character.x > square_two.x and character.x < square_two.x2:
+    if (character.x > square_two.x) and (character.x < square_two.x2) and (character.y > square_two.y) and (character.y < square_two.y2):
         print ('two')
-    if character.x > square_three.x and character.x < square_three.x2:
+    if (character.x > square_three.x) and (character.x < square_three.x2) and (character.y > square_three.y) and (character.y < square_three.y2):
         print ('three')
     
     draw()
