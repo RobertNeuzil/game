@@ -34,9 +34,9 @@ class rects():
 
 
 character = rects(50, 540, 40, 40)
-square_one = rects(210, 400, 150, 20)
-square_two = rects(380, 260, 70, 20)
-square_three = rects(220, 150, 120, 20)
+square_one = rects(90, 440, 200, 20)
+square_two = rects(380, 290, 70, 20)
+square_three = rects(200, 150, 120, 20)
 prize = rects(250, 0, 80, 40)
 ground = rects(0, 580, 600, 20)
 
@@ -86,7 +86,10 @@ while character.running:
         else:
             character.jumping = False
             character.jumpcount = 10
-
+    
+    if character.x > square_one.x and character.x < square_one.x + square_one.width and character.y > square_one.y - square_one.height and character.y < square_one.y + square_one.height:
+        print ("Collission") 
+        pass
     draw()
 
 pygame.quit()
