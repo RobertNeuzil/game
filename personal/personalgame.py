@@ -9,20 +9,21 @@ gray60 = (153, 153, 153)
 blue = (50, 109, 255)
 collisioncount = 0
 
+
 class rects():
     def __init__(self, x, y, width, height):
         self.x = x
         self.y = y
         self.width = width
         self.height = height
+        self.x2 = x + width
+        self.y2 = y + height
         self.jumpcount = 10
         self.jumping = False
         self.running = True
         self.velocity = 5
-        self.x2 = x + width
-        self.y2 = y + height
-        
-        
+
+
     def create(self):
         pygame.draw.rect(
             window, red, (self.x, self.y, self.width, self.height))
@@ -34,8 +35,6 @@ class rects():
     def create_prize(self):
         pygame.draw.rect(
             window, blue, (self.x, self.y, self.width, self.height))
-
-
 
 
 character = rects(50, 540, 40, 40)
@@ -58,9 +57,10 @@ def draw():
     ground.create_ground()
     pygame.display.update()
 
+
 # Main Game Loop
 while character.running:
-    #Quit Game
+    # Quit Game
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             character.running = False
@@ -69,38 +69,44 @@ while character.running:
 
     if keys[pygame.K_LEFT] and character.x > 0:
         character.x -= character.velocity
+        character.x2 -= character.velocity
     if keys[pygame.K_RIGHT] and character.x < 600 - character.width:
         character.x += character.velocity
-
-    
+        character.x2 += character.velocity
     if not(character.jumping):
 
         if keys[pygame.K_DOWN] and character.y < 600 - character.height - ground.height:
             character.y += character.velocity
+            character.y2 += character.velocity
         if keys[pygame.K_UP] and character.y > 0:
             character.y -= character.velocity
+            character.y2 -= character.velocity
         if keys[pygame.K_SPACE]:
             character.jumping = True
-    # Jump loop        
+    # Jump loop
     else:
         if character.jumpcount >= -10:
             neg = 1
             if character.jumpcount <= 0:
                 neg = -1
             character.y -= (character.jumpcount ** 2) * 0.5 * neg
+            character.y2 -= (character.jumpcount ** 2) * 0.5 * neg
             character.jumpcount -= 1
 
         else:
             character.jumping = False
             character.jumpcount = 10
-
-    if (character.x > square_one.x) and (character.x < square_one.x2) and (character.y > square_one.y) and (character.y < square_one.y2): 
-        print ('one')
+    # Collision logic
+    if (character.x > square_one.x) and (character.x < square_one.x2) and (character.y > square_one.y) and (character.y < square_one.y2):
+        print('one')
     if (character.x > square_two.x) and (character.x < square_two.x2) and (character.y > square_two.y) and (character.y < square_two.y2):
-        print ('two')
+        print('two')
     if (character.x > square_three.x) and (character.x < square_three.x2) and (character.y > square_three.y) and (character.y < square_three.y2):
-        print ('three')
-    
+        print('three')
+    if (character.x2 > square_one.x):
+        pass
+
+
     draw()
-    
+
 pygame.quit()
