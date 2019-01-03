@@ -19,7 +19,9 @@ class rects():
         self.jumping = False
         self.running = True
         self.velocity = 5
-
+        self.x2 = self.x + self.width
+        self.y2 = self.y + self.height
+        
     def create(self):
         pygame.draw.rect(
             window, red, (self.x, self.y, self.width, self.height))
@@ -31,6 +33,8 @@ class rects():
     def create_prize(self):
         pygame.draw.rect(
             window, blue, (self.x, self.y, self.width, self.height))
+
+
 
 
 character = rects(50, 540, 40, 40)
@@ -88,12 +92,11 @@ while character.running:
             character.jumping = False
             character.jumpcount = 10
     #colission detection
-    if character.x > square_one.x and character.x < square_one.x + square_one.width and character.y > square_one.y - square_one.height and character.y < square_one.y + square_one.height:
-        print("Collission")
-   
-    if character.y + character.height > square_one.y and character.y < square_one.height + square_one.y:
+    if character.x < square_one.x + square_one.x:
         collisioncount += 1
         print (f"Colission{collisioncount}")
+    
+    
     draw()
 
 pygame.quit()
