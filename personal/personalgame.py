@@ -23,7 +23,6 @@ class rects():
         self.running = True
         self.velocity = 5
 
-
     def create(self):
         pygame.draw.rect(
             window, red, (self.x, self.y, self.width, self.height))
@@ -97,33 +96,14 @@ while character.running:
             character.jumping = False
             character.jumpcount = 10
     # Collision logic
-    if range(character.x, character.x2) in range(square_one.x, square_one.x2):
-        print ('onex1')
-    if character.x2 in range(square_one.x, square_one.x2) and character.y in range(square_one.y, square_one.y2):
-        print('onex2')
-    if character.y in range(square_one.y, square_one.y2) and character.y in range(square_one.x, square_one.x2):
-        print ('oney1')
-    if character.y2 in range(square_one.y, square_one.y2) and character.x in range(square_one.x, square_one.x2):
-        print ('oney2')
-    if character.x in range(square_two.x, square_two.x2) and character.y in range(square_two.y, square_two.y2):
-        print ('two')
-    if character.x2 in range(square_two.x, square_two.x2) and character.y in range(square_two.y, square_two.y2):
-        print('two')
-    if character.y in range(square_two.y, square_two.y2) and character.x in range(square_two.x, square_two.x2):
-        print ('two')
-    if character.y2 in range(square_two.y, square_two.y2) and character.x in range(square_two.x, square_two.x2):
-        print ('two')
-    if character.x in range(square_three.x, square_three.x2) and character.y in range(square_three.y, square_three.y2):
-        print ('three')
-    if character.x2 in range(square_three.x, square_three.x2) and character.y in range(square_three.y, square_three.y2):
-        print('three')
-    if character.y in range(square_three.y, square_three.y2) and character.x in range(square_three.x, square_three.x2):
-        print ('three')
-    if character.y2 in range(square_three.y, square_three.y2) and character.x in range(square_three.x, square_three.x2):
-        print ('three')
     
-
-
+    if character.x2 > square_one.x and character.x < square_one.x2:
+        if character.y in range(square_one.y, square_one.y2):
+            print ('top')
+    if character.x2 > square_one.x and character.x < square_one.x2:
+        if character.y2 in range(square_one.y, square_one.y2):
+            print ('bottom')
     draw()
+    
 
 pygame.quit()
