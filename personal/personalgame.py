@@ -43,6 +43,8 @@ square_three = rects(150, 150, 15, 30)
 prize = rects(250, 0, 80, 40)
 ground = rects(0, 580, 600, 20)
 
+def stop():
+    character.velocity - 5
 
 def draw():
 
@@ -66,18 +68,18 @@ while character.running:
 
     keys = pygame.key.get_pressed()
 
-    if keys[pygame.K_LEFT] or keys[pygame.K_a] and character.x > 0:
+    if keys[pygame.K_LEFT] and character.x > 0 or keys[pygame.K_a] and character.x > 0:
         character.x -= character.velocity
         character.x2 -= character.velocity
-    if keys[pygame.K_RIGHT] or keys[pygame.K_d] and character.x < 600 - character.width:
+    if keys[pygame.K_RIGHT] and character.x < 600 or keys[pygame.K_d] and character.x < 600 - character.width:
         character.x += character.velocity
         character.x2 += character.velocity
     if not(character.jumping):
 
-        if keys[pygame.K_DOWN] or keys[pygame.K_s] and character.y < 600 - character.height - ground.height:
+        if keys[pygame.K_DOWN] and character.y < 600 or keys[pygame.K_s] and character.y < 600 - character.height - ground.height:
             character.y += character.velocity
             character.y2 += character.velocity
-        if keys[pygame.K_UP] or keys[pygame.K_w] and character.y > 0:
+        if keys[pygame.K_UP] and character.y > 0 or keys[pygame.K_w] and character.y > 0:
             character.y -= character.velocity
             character.y2 -= character.velocity
         if keys[pygame.K_SPACE]:
@@ -100,16 +102,24 @@ while character.running:
 
     if character.x2 > square_one.x and character.x < square_one.x2:
         if character.y in range(square_one.y, square_one.y2):
+            stop()
             print('bottomx1')
+            
     if character.x2 > square_one.x and character.x < square_one.x2:
         if character.y2 in range(square_one.y, square_one.y2):
+            
             print('topx1')
+            
     if character.y2 > square_one.y and character.y < square_one.y2:
         if character.x in range(square_one.x, square_one.x2):
+            
             print('rightx1')
+            
     if character.y2 > square_one.y and character.y < square_one.y2:
         if character.x2 in range(square_one.x, square_one.x2):
+            
             print('leftx1')
+            
 
     if character.x2 > square_two.x and character.x < square_two.x2:
         if character.y in range(square_two.y, square_two.y2):
