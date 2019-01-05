@@ -34,7 +34,7 @@ class rects():
     def create_prize(self):
         pygame.draw.rect(
             window, blue, (self.x, self.y, self.width, self.height))
-
+    
 
 character = rects(50, 540, 40, 40)
 square_one = rects(90, 440, 15, 30)
@@ -95,46 +95,47 @@ while character.running:
         else:
             character.jumping = False
             character.jumpcount = 10
+    
     # Collision logic
 
     if character.x2 > square_one.x and character.x < square_one.x2:
         if character.y in range(square_one.y, square_one.y2):
-            print('top')
+            print('bottomx1')
     if character.x2 > square_one.x and character.x < square_one.x2:
         if character.y2 in range(square_one.y, square_one.y2):
-            print('bottom')
+            print('topx1')
     if character.y2 > square_one.y and character.y < square_one.y2:
         if character.x in range(square_one.x, square_one.x2):
-            print('left')
+            print('rightx1')
     if character.y2 > square_one.y and character.y < square_one.y2:
         if character.x2 in range(square_one.x, square_one.x2):
-            print('right')
+            print('leftx1')
 
     if character.x2 > square_two.x and character.x < square_two.x2:
         if character.y in range(square_two.y, square_two.y2):
-            print('top')
+            print('bottomx2')
     if character.x2 > square_two.x and character.x < square_two.x2:
         if character.y2 in range(square_two.y, square_two.y2):
-            print('bottom')
+            print('topx2')
     if character.y2 > square_two.y and character.y < square_two.y2:
         if character.x in range(square_two.x, square_two.x2):
-            print('left')
+            print('rightx1')
     if character.y2 > square_two.y and character.y < square_two.y2:
         if character.x2 in range(square_two.x, square_two.x2):
-            print('right')
+            print('leftx1')
 
     if character.x2 > square_three.x and character.x < square_three.x2:
         if character.y in range(square_three.y, square_three.y2):
-            print('top')
+            print('bottomx2')
     if character.x2 > square_three.x and character.x < square_three.x2:
         if character.y2 in range(square_three.y, square_three.y2):
-            print('bottom')
+            print('topx2')
     if character.y2 > square_three.y and character.y < square_three.y2:
         if character.x in range(square_three.x, square_three.x2):
-            print('left')
+            print('rightx1')
     if character.y2 > square_three.y and character.y < square_three.y2:
         if character.x2 in range(square_three.x, square_three.x2):
-            print('right')
+            print('leftx1')
     
     if character.x2 > prize.x and character.x < prize.x2:
         if character.y in range(prize.y, prize.y2):
