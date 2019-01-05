@@ -7,6 +7,7 @@ red = (255, 0, 0)
 black = (0, 0, 0)
 gray60 = (153, 153, 153)
 blue = (50, 109, 255)
+lime = (0,255,0)
 collisioncount = 0
 
 
@@ -22,6 +23,9 @@ class rects(pygame.Rect):
         self.jumping = False
         self.running = True
         self.velocity = 5
+
+    def create_character(self):
+        pygame.draw.rect(window, lime, (self.x, self.y, self.width, self.height))
 
     def create(self):
         pygame.draw.rect(
@@ -48,7 +52,7 @@ def draw():
 
     pygame.time.delay(40)
     window.fill(black)
-    character.create()
+    character.create_character()
     square_one.create()
     square_two.create()
     square_three.create()
@@ -66,7 +70,7 @@ while character.running:
 
     keys = pygame.key.get_pressed()
     if pygame.Rect.colliderect(character, square_one):
-        character.velocity = -5
+        character.velocity = 0
     if not pygame.Rect.colliderect(character, square_one):
         character.velocity = 5
 
