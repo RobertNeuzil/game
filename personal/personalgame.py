@@ -66,18 +66,18 @@ while character.running:
 
     keys = pygame.key.get_pressed()
 
-    if keys[pygame.K_LEFT] and character.x > 0:
+    if keys[pygame.K_LEFT] or keys[pygame.K_a] and character.x > 0:
         character.x -= character.velocity
         character.x2 -= character.velocity
-    if keys[pygame.K_RIGHT] and character.x < 600 - character.width:
+    if keys[pygame.K_RIGHT] or keys[pygame.K_d] and character.x < 600 - character.width:
         character.x += character.velocity
         character.x2 += character.velocity
     if not(character.jumping):
 
-        if keys[pygame.K_DOWN] and character.y < 600 - character.height - ground.height:
+        if keys[pygame.K_DOWN] or keys[pygame.K_s] and character.y < 600 - character.height - ground.height:
             character.y += character.velocity
             character.y2 += character.velocity
-        if keys[pygame.K_UP] and character.y > 0:
+        if keys[pygame.K_UP] or keys[pygame.K_w] and character.y > 0:
             character.y -= character.velocity
             character.y2 -= character.velocity
         if keys[pygame.K_SPACE]:
