@@ -69,13 +69,12 @@ while character.running:
             character.running = False
 
     keys = pygame.key.get_pressed()
-    if pygame.Rect.colliderect(character, square_one):
-        character.velocity = 0
-    if not pygame.Rect.colliderect(character, square_one):
-        character.velocity = 5
+
 
     if keys[pygame.K_LEFT] and character.x > 0 or keys[pygame.K_a] and character.x > 0:
-        
+        if character.top == square_one.bottom:
+            character.velocity == 0
+        else:
             character.x -= character.velocity
             character.x2 -= character.velocity
     if keys[pygame.K_RIGHT] and character.x < 600 or keys[pygame.K_d] and character.x < 600 - character.width:
