@@ -1,7 +1,5 @@
-# Pygame sprite Example
 import pygame
 import random
-import os
 
 WIDTH = 800
 HEIGHT = 600
@@ -14,29 +12,22 @@ RED = (255, 0, 0)
 GREEN = (0, 255, 0)
 BLUE = (0, 0, 255)
 
-# set up assets folders
-# Windows: "C:\Users\chris\Documents\img"
-# Mac: "/Users/chris/Documents/img"
-game_folder = os.path.dirname(__file__)
-img_folder = os.path.join(game_folder, "img")
-
 class Player(pygame.sprite.Sprite):
     # sprite for the Player
     def __init__(self):
+        # this line is required to properly create the sprite
         pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.image.load(os.path.join(img_folder, "p1_jump.png")).convert()
-        self.image.set_colorkey(BLACK)
+        # create a plain rectangle for the sprite image
+        self.image = pygame.Surface((50, 50))
+        self.image.fill(GREEN)
+        # find the rectangle that encloses the image
         self.rect = self.image.get_rect()
+        # center the sprite on the screen
         self.rect.center = (WIDTH / 2, HEIGHT / 2)
-        self.y_speed = 5
 
     def update(self):
+        # any code here will happen every time the game loop updates
         self.rect.x += 5
-        self.rect.y += self.y_speed
-        if self.rect.bottom > HEIGHT - 200:
-            self.y_speed = -5
-        if self.rect.top < 200:
-            self.y_speed = 5
         if self.rect.left > WIDTH:
             self.rect.right = 0
 
@@ -44,7 +35,7 @@ class Player(pygame.sprite.Sprite):
 pygame.init()
 pygame.mixer.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("My Game")
+pygame.display.set_caption("Sprite Example")
 clock = pygame.time.Clock()
 
 all_sprites = pygame.sprite.Group()
@@ -65,7 +56,7 @@ while running:
     all_sprites.update()
 
     # Draw / render
-    screen.fill(BLUE)
+    screen.fill(BLACK)
     all_sprites.draw(screen)
     # *after* drawing everything, flip the display
     pygame.display.flip()
